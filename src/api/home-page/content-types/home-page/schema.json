@@ -1,0 +1,40 @@
+{
+  "kind": "singleType",
+  "collectionName": "home_pages",
+  "info": {
+    "singularName": "home-page",
+    "pluralName": "home-pages",
+    "displayName": "Home Page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "SEO": {
+      "type": "component",
+      "component": "ancillary.seo-details",
+      "repeatable": false
+    },
+    "Bento": {
+      "type": "component",
+      "component": "ancillary.list",
+      "repeatable": true
+    },
+    "List360": {
+      "type": "component",
+      "component": "ancillary.list",
+      "repeatable": true
+    },
+    "Popup_list": {
+      "type": "component",
+      "component": "ancillary.list",
+      "repeatable": true
+    },
+    "BraveShield": {
+      "type": "component",
+      "component": "ancillary.multiple-subheadings",
+      "repeatable": false
+    }
+  }
+}

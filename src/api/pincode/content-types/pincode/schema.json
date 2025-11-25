@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "pincodes",
+  "info": {
+    "singularName": "pincode",
+    "pluralName": "pincodes",
+    "displayName": "Pincode"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "State": {
+      "type": "string"
+    },
+    "City": {
+      "type": "string"
+    },
+    "Area": {
+      "type": "string"
+    },
+    "Pin": {
+      "type": "integer"
+    },
+    "GrandTotal": {
+      "type": "integer"
+    }
+  }
+}

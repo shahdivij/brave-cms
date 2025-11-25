@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_ancillary_seo_details",
+  "info": {
+    "displayName": "SEO Details",
+    "icon": "dashboard"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Description": {
+      "type": "text"
+    },
+    "MetaImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "Sections": {
+      "type": "component",
+      "component": "ancillary.sections",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

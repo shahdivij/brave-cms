@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_ancillary_buttons",
+  "info": {
+    "displayName": "Button",
+    "icon": "bold"
+  },
+  "options": {},
+  "attributes": {
+    "Button_text": {
+      "type": "string"
+    },
+    "Button_url": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}

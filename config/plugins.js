@@ -1,6 +1,6 @@
 module.exports = ({ env }) => ({
-  upload: {
-    config: {
+/*  upload: {
+   config: {
       provider: 'strapi-provider-upload-aws-s3',
       providerOptions: {
         baseUrl: env('AWS_CLOUDFRONT_URL'),
@@ -17,5 +17,5 @@ module.exports = ({ env }) => ({
         },
       },
     },
-  },
+  },*/
 });

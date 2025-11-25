@@ -1,0 +1,48 @@
+{
+  "collectionName": "components_ancillary_sections",
+  "info": {
+    "displayName": "Sections",
+    "icon": "attachment"
+  },
+  "options": {},
+  "attributes": {
+    "Name": {
+      "type": "string"
+    },
+    "Heading": {
+      "type": "string"
+    },
+    "Subheading": {
+      "type": "text"
+    },
+    "Description": {
+      "type": "text"
+    },
+    "Asset": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "Button": {
+      "type": "component",
+      "component": "ancillary.button",
+      "repeatable": false
+    },
+    "mobile": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  },
+  "config": {}
+}

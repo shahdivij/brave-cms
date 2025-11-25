@@ -1,0 +1,37 @@
+{
+  "collectionName": "components_ancillary_multiple_subheadings",
+  "info": {
+    "displayName": "Multiple Subheadings",
+    "icon": "briefcase"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Suheading1": {
+      "type": "string"
+    },
+    "Suheading2": {
+      "type": "string"
+    },
+    "Description1": {
+      "type": "text"
+    },
+    "Description2": {
+      "type": "text"
+    },
+    "Description3": {
+      "type": "text"
+    },
+    "Description4": {
+      "type": "text"
+    },
+    "Button": {
+      "type": "component",
+      "component": "ancillary.button",
+      "repeatable": false
+    }
+  },
+  "config": {}
+}
