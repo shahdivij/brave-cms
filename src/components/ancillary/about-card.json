@@ -1,0 +1,38 @@
+{
+  "collectionName": "components_ancillary_about_cards",
+  "info": {
+    "displayName": "About Card",
+    "icon": "alien"
+  },
+  "options": {},
+  "attributes": {
+    "Name": {
+      "type": "string"
+    },
+    "Position": {
+      "type": "string"
+    },
+    "Email": {
+      "type": "string"
+    },
+    "Phone": {
+      "type": "string"
+    },
+    "Image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "Socials": {
+      "type": "component",
+      "component": "ancillary.button",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

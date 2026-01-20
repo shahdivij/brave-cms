@@ -1,0 +1,20 @@
+{
+  "kind": "singleType",
+  "collectionName": "subpage_unibodies",
+  "info": {
+    "singularName": "subpage-unibody",
+    "pluralName": "subpage-unibodies",
+    "displayName": "Unibody Popup"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Sections": {
+      "type": "component",
+      "component": "ancillary.product-page-main",
+      "repeatable": true
+    }
+  }
+}

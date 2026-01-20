@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_ancillary_bullets",
+  "info": {
+    "displayName": "Bullets",
+    "icon": "arrowRight"
+  },
+  "options": {},
+  "attributes": {
+    "Text": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}

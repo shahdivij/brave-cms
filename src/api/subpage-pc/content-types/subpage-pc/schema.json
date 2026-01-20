@@ -1,0 +1,30 @@
+{
+  "kind": "singleType",
+  "collectionName": "subpage_pcs",
+  "info": {
+    "singularName": "subpage-pc",
+    "pluralName": "subpage-pcs",
+    "displayName": "PC Popup"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Header": {
+      "type": "component",
+      "component": "ancillary.product-page-main",
+      "repeatable": false
+    },
+    "Table": {
+      "type": "component",
+      "component": "ancillary.product-page-main",
+      "repeatable": true
+    },
+    "Footer": {
+      "type": "component",
+      "component": "ancillary.product-page-main",
+      "repeatable": false
+    }
+  }
+}

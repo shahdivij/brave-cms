@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_ancillary_rows",
+  "info": {
+    "displayName": "Rows",
+    "icon": "bulletList"
+  },
+  "options": {},
+  "attributes": {
+    "Data": {
+      "type": "component",
+      "component": "ancillary.key-value",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

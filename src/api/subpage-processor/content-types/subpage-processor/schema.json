@@ -1,0 +1,20 @@
+{
+  "kind": "singleType",
+  "collectionName": "subpage_processors",
+  "info": {
+    "singularName": "subpage-processor",
+    "pluralName": "subpage-processors",
+    "displayName": "Processor Popup"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Sections": {
+      "type": "component",
+      "component": "ancillary.product-page-main",
+      "repeatable": true
+    }
+  }
+}

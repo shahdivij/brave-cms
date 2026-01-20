@@ -1,0 +1,33 @@
+{
+  "kind": "singleType",
+  "collectionName": "subpage_keyboards",
+  "info": {
+    "singularName": "subpage-keyboard",
+    "pluralName": "subpage-keyboards",
+    "displayName": "Keyboard Popup"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Sections": {
+      "type": "component",
+      "component": "ancillary.product-page-main",
+      "repeatable": true
+    },
+    "Table": {
+      "type": "component",
+      "component": "ancillary.product-page-main",
+      "repeatable": true
+    },
+    "List": {
+      "type": "component",
+      "component": "ancillary.key-value",
+      "repeatable": true
+    },
+    "FooterText": {
+      "type": "text"
+    }
+  }
+}

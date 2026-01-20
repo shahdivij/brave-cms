@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "pin_searches",
+  "info": {
+    "singularName": "pin-search",
+    "pluralName": "pin-searches",
+    "displayName": "PinSearch"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Searched_pin": {
+      "type": "integer"
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "kind": "singleType",
+  "collectionName": "stylus_pages",
+  "info": {
+    "singularName": "stylus-page",
+    "pluralName": "stylus-pages",
+    "displayName": "Stylus Page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Sections": {
+      "type": "component",
+      "component": "ancillary.seo-details",
+      "repeatable": false
+    },
+    "Heading3": {
+      "type": "text"
+    },
+    "List_section": {
+      "type": "component",
+      "component": "ancillary.list",
+      "repeatable": true
+    },
+    "Sections2": {
+      "type": "component",
+      "component": "ancillary.sections",
+      "repeatable": true
+    },
+    "Heading4": {
+      "type": "text"
+    },
+    "FunctionList": {
+      "type": "component",
+      "component": "ancillary.key-value",
+      "repeatable": true
+    },
+    "Scroller": {
+      "type": "component",
+      "component": "ancillary.box-section",
+      "repeatable": true
+    },
+    "HorizontalImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "Rows": {
+      "type": "component",
+      "component": "ancillary.rows",
+      "repeatable": true
+    },
+    "BottomSection": {
+      "type": "component",
+      "component": "ancillary.sections",
+      "repeatable": false
+    }
+  }
+}

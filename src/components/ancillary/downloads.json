@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_ancillary_downloads",
+  "info": {
+    "displayName": "Downloads",
+    "icon": "alien"
+  },
+  "options": {},
+  "attributes": {
+    "Identifier": {
+      "type": "string"
+    },
+    "Title": {
+      "type": "string"
+    },
+    "Description": {
+      "type": "text"
+    },
+    "ButtonText": {
+      "type": "string"
+    },
+    "ButtonUrl": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}

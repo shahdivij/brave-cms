@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_ancillary_faqs",
+  "info": {
+    "displayName": "FAQ",
+    "icon": "arrowRight"
+  },
+  "options": {},
+  "attributes": {
+    "Section": {
+      "type": "string"
+    },
+    "QnA": {
+      "type": "component",
+      "component": "ancillary.key-value",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

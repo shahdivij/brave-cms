@@ -1,0 +1,25 @@
+{
+  "kind": "singleType",
+  "collectionName": "tech_specs",
+  "info": {
+    "singularName": "tech-spec",
+    "pluralName": "tech-specs",
+    "displayName": "Tech Spec"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "SEO_Headers": {
+      "type": "component",
+      "component": "ancillary.seo-details",
+      "repeatable": false
+    },
+    "Rows": {
+      "type": "component",
+      "component": "ancillary.rows",
+      "repeatable": true
+    }
+  }
+}

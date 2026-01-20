@@ -430,6 +430,35 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiAboutPageAboutPage extends Struct.SingleTypeSchema {
+  collectionName: 'about_pages';
+  info: {
+    displayName: 'About Page';
+    pluralName: 'about-pages';
+    singularName: 'about-page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::about-page.about-page'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    SEO: Schema.Attribute.Component<'ancillary.seo-details', false>;
+    Team: Schema.Attribute.Component<'ancillary.about-card', true>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiFooterFooter extends Struct.SingleTypeSchema {
   collectionName: 'footers';
   info: {
@@ -526,6 +555,70 @@ export interface ApiLeadLead extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiPcModePcMode extends Struct.SingleTypeSchema {
+  collectionName: 'pc_modes';
+  info: {
+    displayName: 'PC Mode';
+    pluralName: 'pc-modes';
+    singularName: 'pc-mode';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    BottomImage: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    BottomTitle: Schema.Attribute.Text;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    DetailBoxes: Schema.Attribute.Component<'ancillary.box-section', true>;
+    Heading2: Schema.Attribute.Text;
+    List: Schema.Attribute.Component<'ancillary.key-value', true>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::pc-mode.pc-mode'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    SEO: Schema.Attribute.Component<'ancillary.seo-details', false>;
+    Subheading2: Schema.Attribute.Text;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiPinSearchPinSearch extends Struct.CollectionTypeSchema {
+  collectionName: 'pin_searches';
+  info: {
+    displayName: 'PinSearch';
+    pluralName: 'pin-searches';
+    singularName: 'pin-search';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::pin-search.pin-search'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    Searched_pin: Schema.Attribute.Integer;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiPincodePincode extends Struct.CollectionTypeSchema {
   collectionName: 'pincodes';
   info: {
@@ -537,21 +630,407 @@ export interface ApiPincodePincode extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    Address: Schema.Attribute.Text;
     Area: Schema.Attribute.String;
-    City: Schema.Attribute.String;
+    asc: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    GrandTotal: Schema.Attribute.Integer;
+    District: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::pincode.pincode'
     > &
       Schema.Attribute.Private;
+    phone: Schema.Attribute.String;
     Pin: Schema.Attribute.Integer;
+    POC: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     State: Schema.Attribute.String;
+    type_of_service: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiProductPageProductPage extends Struct.SingleTypeSchema {
+  collectionName: 'product_pages';
+  info: {
+    displayName: 'Product Page';
+    pluralName: 'product-pages';
+    singularName: 'product-page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Hover: Schema.Attribute.Component<'ancillary.sections', true>;
+    LaunchFilm: Schema.Attribute.Component<'ancillary.sections', false>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::product-page.product-page'
+    > &
+      Schema.Attribute.Private;
+    ProductDetails: Schema.Attribute.Component<
+      'ancillary.product-page-main',
+      true
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    SEODetails: Schema.Attribute.Component<'ancillary.seo-details', false>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiStaticPageStaticPage extends Struct.CollectionTypeSchema {
+  collectionName: 'static_pages';
+  info: {
+    displayName: 'Static Page';
+    pluralName: 'static-pages';
+    singularName: 'static-page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Content: Schema.Attribute.RichText;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::static-page.static-page'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    Sections: Schema.Attribute.Component<'ancillary.seo-details', false>;
+    Slug: Schema.Attribute.UID<'Title'>;
+    Title: Schema.Attribute.Text;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiStylusPageStylusPage extends Struct.SingleTypeSchema {
+  collectionName: 'stylus_pages';
+  info: {
+    displayName: 'Stylus Page';
+    pluralName: 'stylus-pages';
+    singularName: 'stylus-page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    BottomSection: Schema.Attribute.Component<'ancillary.sections', false>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    FunctionList: Schema.Attribute.Component<'ancillary.key-value', true>;
+    Heading3: Schema.Attribute.Text;
+    Heading4: Schema.Attribute.Text;
+    HorizontalImage: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    List_section: Schema.Attribute.Component<'ancillary.list', true>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::stylus-page.stylus-page'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    Rows: Schema.Attribute.Component<'ancillary.rows', true>;
+    Scroller: Schema.Attribute.Component<'ancillary.box-section', true>;
+    Sections: Schema.Attribute.Component<'ancillary.seo-details', false>;
+    Sections2: Schema.Attribute.Component<'ancillary.sections', true>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiSubpageBatterySubpageBattery
+  extends Struct.SingleTypeSchema {
+  collectionName: 'subpage_batteries';
+  info: {
+    displayName: 'Battery Popup';
+    pluralName: 'subpage-batteries';
+    singularName: 'subpage-battery';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::subpage-battery.subpage-battery'
+    > &
+      Schema.Attribute.Private;
+    MarqueeImages: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    Sections: Schema.Attribute.Component<'ancillary.product-page-main', true>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiSubpageDisplaySubpageDisplay
+  extends Struct.SingleTypeSchema {
+  collectionName: 'subpage_displays';
+  info: {
+    displayName: 'Display Popup';
+    pluralName: 'subpage-displays';
+    singularName: 'subpage-display';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::subpage-display.subpage-display'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    Sections: Schema.Attribute.Component<'ancillary.product-page-main', true>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiSubpageKeyboardSubpageKeyboard
+  extends Struct.SingleTypeSchema {
+  collectionName: 'subpage_keyboards';
+  info: {
+    displayName: 'Keyboard Popup';
+    pluralName: 'subpage-keyboards';
+    singularName: 'subpage-keyboard';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    FooterText: Schema.Attribute.Text;
+    List: Schema.Attribute.Component<'ancillary.key-value', true>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::subpage-keyboard.subpage-keyboard'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    Sections: Schema.Attribute.Component<'ancillary.product-page-main', true>;
+    Table: Schema.Attribute.Component<'ancillary.product-page-main', true>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiSubpagePcSubpagePc extends Struct.SingleTypeSchema {
+  collectionName: 'subpage_pcs';
+  info: {
+    displayName: 'PC Popup';
+    pluralName: 'subpage-pcs';
+    singularName: 'subpage-pc';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Footer: Schema.Attribute.Component<'ancillary.product-page-main', false>;
+    Header: Schema.Attribute.Component<'ancillary.product-page-main', false>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::subpage-pc.subpage-pc'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    Table: Schema.Attribute.Component<'ancillary.product-page-main', true>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiSubpageProcessorSubpageProcessor
+  extends Struct.SingleTypeSchema {
+  collectionName: 'subpage_processors';
+  info: {
+    displayName: 'Processor Popup';
+    pluralName: 'subpage-processors';
+    singularName: 'subpage-processor';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::subpage-processor.subpage-processor'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    Sections: Schema.Attribute.Component<'ancillary.product-page-main', true>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiSubpageStylusSubpageStylus extends Struct.SingleTypeSchema {
+  collectionName: 'subpage_styluses';
+  info: {
+    displayName: 'Stylus Popup';
+    pluralName: 'subpage-styluses';
+    singularName: 'subpage-stylus';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Details: Schema.Attribute.Component<'ancillary.key-value', true>;
+    Footer: Schema.Attribute.Component<'ancillary.product-page-main', false>;
+    Header: Schema.Attribute.Component<'ancillary.product-page-main', false>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::subpage-stylus.subpage-stylus'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    Table: Schema.Attribute.Component<'ancillary.product-page-main', true>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiSubpageUnibodySubpageUnibody
+  extends Struct.SingleTypeSchema {
+  collectionName: 'subpage_unibodies';
+  info: {
+    displayName: 'Unibody Popup';
+    pluralName: 'subpage-unibodies';
+    singularName: 'subpage-unibody';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::subpage-unibody.subpage-unibody'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    Sections: Schema.Attribute.Component<'ancillary.product-page-main', true>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiSupportSupport extends Struct.SingleTypeSchema {
+  collectionName: 'supports';
+  info: {
+    displayName: 'Support';
+    pluralName: 'supports';
+    singularName: 'support';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    BraveShield: Schema.Attribute.Component<
+      'ancillary.multiple-subheadings',
+      false
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Downloads: Schema.Attribute.Component<'ancillary.downloads', true>;
+    FAQ: Schema.Attribute.Component<'ancillary.faq', true>;
+    Heading: Schema.Attribute.String;
+    Heading2: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::support.support'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    SEODetails: Schema.Attribute.Component<'ancillary.seo-details', false>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiTechSpecTechSpec extends Struct.SingleTypeSchema {
+  collectionName: 'tech_specs';
+  info: {
+    displayName: 'Tech Spec';
+    pluralName: 'tech-specs';
+    singularName: 'tech-spec';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::tech-spec.tech-spec'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    Rows: Schema.Attribute.Component<'ancillary.rows', true>;
+    SEO_Headers: Schema.Attribute.Component<'ancillary.seo-details', false>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1068,10 +1547,25 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::about-page.about-page': ApiAboutPageAboutPage;
       'api::footer.footer': ApiFooterFooter;
       'api::home-page.home-page': ApiHomePageHomePage;
       'api::lead.lead': ApiLeadLead;
+      'api::pc-mode.pc-mode': ApiPcModePcMode;
+      'api::pin-search.pin-search': ApiPinSearchPinSearch;
       'api::pincode.pincode': ApiPincodePincode;
+      'api::product-page.product-page': ApiProductPageProductPage;
+      'api::static-page.static-page': ApiStaticPageStaticPage;
+      'api::stylus-page.stylus-page': ApiStylusPageStylusPage;
+      'api::subpage-battery.subpage-battery': ApiSubpageBatterySubpageBattery;
+      'api::subpage-display.subpage-display': ApiSubpageDisplaySubpageDisplay;
+      'api::subpage-keyboard.subpage-keyboard': ApiSubpageKeyboardSubpageKeyboard;
+      'api::subpage-pc.subpage-pc': ApiSubpagePcSubpagePc;
+      'api::subpage-processor.subpage-processor': ApiSubpageProcessorSubpageProcessor;
+      'api::subpage-stylus.subpage-stylus': ApiSubpageStylusSubpageStylus;
+      'api::subpage-unibody.subpage-unibody': ApiSubpageUnibodySubpageUnibody;
+      'api::support.support': ApiSupportSupport;
+      'api::tech-spec.tech-spec': ApiTechSpecTechSpec;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

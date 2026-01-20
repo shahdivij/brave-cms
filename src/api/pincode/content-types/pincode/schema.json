@@ -14,7 +14,7 @@
     "State": {
       "type": "string"
     },
-    "City": {
+    "District": {
       "type": "string"
     },
     "Area": {
@@ -23,8 +23,20 @@
     "Pin": {
       "type": "integer"
     },
-    "GrandTotal": {
-      "type": "integer"
+    "type_of_service": {
+      "type": "string"
+    },
+    "asc": {
+      "type": "string"
+    },
+    "Address": {
+      "type": "text"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "POC": {
+      "type": "string"
     }
   }
 }

@@ -1,0 +1,30 @@
+{
+  "kind": "singleType",
+  "collectionName": "subpage_batteries",
+  "info": {
+    "singularName": "subpage-battery",
+    "pluralName": "subpage-batteries",
+    "displayName": "Battery Popup"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Sections": {
+      "type": "component",
+      "component": "ancillary.product-page-main",
+      "repeatable": true
+    },
+    "MarqueeImages": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "kind": "singleType",
+  "collectionName": "subpage_styluses",
+  "info": {
+    "singularName": "subpage-stylus",
+    "pluralName": "subpage-styluses",
+    "displayName": "Stylus Popup"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Header": {
+      "type": "component",
+      "component": "ancillary.product-page-main",
+      "repeatable": false
+    },
+    "Table": {
+      "type": "component",
+      "component": "ancillary.product-page-main",
+      "repeatable": true
+    },
+    "Details": {
+      "type": "component",
+      "component": "ancillary.key-value",
+      "repeatable": true
+    },
+    "Footer": {
+      "type": "component",
+      "component": "ancillary.product-page-main",
+      "repeatable": false
+    }
+  }
+}

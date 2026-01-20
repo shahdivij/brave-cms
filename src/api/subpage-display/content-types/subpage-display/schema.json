@@ -1,0 +1,20 @@
+{
+  "kind": "singleType",
+  "collectionName": "subpage_displays",
+  "info": {
+    "singularName": "subpage-display",
+    "pluralName": "subpage-displays",
+    "displayName": "Display Popup"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Sections": {
+      "type": "component",
+      "component": "ancillary.product-page-main",
+      "repeatable": true
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "kind": "singleType",
+  "collectionName": "product_pages",
+  "info": {
+    "singularName": "product-page",
+    "pluralName": "product-pages",
+    "displayName": "Product Page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "SEODetails": {
+      "type": "component",
+      "component": "ancillary.seo-details",
+      "repeatable": false
+    },
+    "Hover": {
+      "type": "component",
+      "component": "ancillary.sections",
+      "repeatable": true
+    },
+    "LaunchFilm": {
+      "type": "component",
+      "component": "ancillary.sections",
+      "repeatable": false
+    },
+    "ProductDetails": {
+      "type": "component",
+      "component": "ancillary.product-page-main",
+      "repeatable": true
+    }
+  }
+}

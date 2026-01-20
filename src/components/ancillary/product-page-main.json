@@ -1,0 +1,37 @@
+{
+  "collectionName": "components_ancillary_product_page_mains",
+  "info": {
+    "displayName": "Product Page - Main",
+    "icon": "archive"
+  },
+  "options": {},
+  "attributes": {
+    "Heading": {
+      "type": "string"
+    },
+    "Subheading": {
+      "type": "text"
+    },
+    "Image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "List": {
+      "type": "component",
+      "component": "ancillary.bullets",
+      "repeatable": true
+    },
+    "Button": {
+      "type": "component",
+      "component": "ancillary.button",
+      "repeatable": false
+    }
+  },
+  "config": {}
+}

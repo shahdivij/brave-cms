@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_ancillary_box_sections",
+  "info": {
+    "displayName": "Box Section",
+    "icon": "archive"
+  },
+  "options": {},
+  "attributes": {
+    "Heading": {
+      "type": "text"
+    },
+    "Description": {
+      "type": "text"
+    },
+    "Subheading": {
+      "type": "string"
+    },
+    "List": {
+      "type": "component",
+      "component": "ancillary.list",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

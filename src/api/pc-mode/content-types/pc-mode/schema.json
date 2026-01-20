@@ -1,0 +1,49 @@
+{
+  "kind": "singleType",
+  "collectionName": "pc_modes",
+  "info": {
+    "singularName": "pc-mode",
+    "pluralName": "pc-modes",
+    "displayName": "PC Mode"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "SEO": {
+      "type": "component",
+      "component": "ancillary.seo-details",
+      "repeatable": false
+    },
+    "Heading2": {
+      "type": "text"
+    },
+    "Subheading2": {
+      "type": "text"
+    },
+    "List": {
+      "type": "component",
+      "component": "ancillary.key-value",
+      "repeatable": true
+    },
+    "DetailBoxes": {
+      "type": "component",
+      "component": "ancillary.box-section",
+      "repeatable": true
+    },
+    "BottomTitle": {
+      "type": "text"
+    },
+    "BottomImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  }
+}
