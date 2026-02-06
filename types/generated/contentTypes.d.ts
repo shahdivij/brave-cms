@@ -1067,6 +1067,39 @@ export interface ApiTechSpecTechSpec extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiWarrentyWarrenty extends Struct.CollectionTypeSchema {
+  collectionName: 'warrenties';
+  info: {
+    displayName: 'Warrenty';
+    pluralName: 'warrenties';
+    singularName: 'warrenty';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    DOP: Schema.Attribute.String;
+    Email: Schema.Attribute.String;
+    Invoice: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::warrenty.warrenty'
+    > &
+      Schema.Attribute.Private;
+    Name: Schema.Attribute.String;
+    Number: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    SerialNumber: Schema.Attribute.Text;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface PluginContentReleasesRelease
   extends Struct.CollectionTypeSchema {
   collectionName: 'strapi_releases';
@@ -1597,6 +1630,7 @@ declare module '@strapi/strapi' {
       'api::subpage-unibody.subpage-unibody': ApiSubpageUnibodySubpageUnibody;
       'api::support.support': ApiSupportSupport;
       'api::tech-spec.tech-spec': ApiTechSpecTechSpec;
+      'api::warrenty.warrenty': ApiWarrentyWarrenty;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "warrenties",
+  "info": {
+    "singularName": "warrenty",
+    "pluralName": "warrenties",
+    "displayName": "Warrenty"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Name": {
+      "type": "string"
+    },
+    "Number": {
+      "type": "string"
+    },
+    "Email": {
+      "type": "string"
+    },
+    "SerialNumber": {
+      "type": "text"
+    },
+    "Invoice": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "DOP": {
+      "type": "string"
+    }
+  }
+}
