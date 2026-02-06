@@ -689,6 +689,36 @@ export interface ApiProductPageProductPage extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiSerialNumberSerialNumber
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'serial_numbers';
+  info: {
+    displayName: 'Serial Numbers';
+    pluralName: 'serial-numbers';
+    singularName: 'serial-number';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    device_name: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::serial-number.serial-number'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    serial_number: Schema.Attribute.Text;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiStaticPageStaticPage extends Struct.CollectionTypeSchema {
   collectionName: 'static_pages';
   info: {
@@ -1555,6 +1585,7 @@ declare module '@strapi/strapi' {
       'api::pin-search.pin-search': ApiPinSearchPinSearch;
       'api::pincode.pincode': ApiPincodePincode;
       'api::product-page.product-page': ApiProductPageProductPage;
+      'api::serial-number.serial-number': ApiSerialNumberSerialNumber;
       'api::static-page.static-page': ApiStaticPageStaticPage;
       'api::stylus-page.stylus-page': ApiStylusPageStylusPage;
       'api::subpage-battery.subpage-battery': ApiSubpageBatterySubpageBattery;

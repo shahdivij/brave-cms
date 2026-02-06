@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "serial_numbers",
+  "info": {
+    "singularName": "serial-number",
+    "pluralName": "serial-numbers",
+    "displayName": "Serial Numbers"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "serial_number": {
+      "type": "text"
+    },
+    "device_name": {
+      "type": "string"
+    }
+  }
+}
