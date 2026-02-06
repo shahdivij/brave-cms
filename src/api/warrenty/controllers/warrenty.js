@@ -13,6 +13,9 @@ module.exports = createCoreController('api::warrenty.warrenty', ({ strapi }) => 
       console.log('=== WARRANTY CREATE REQUEST ===');
       console.log('ctx.request.body:', JSON.stringify(ctx.request.body, null, 2));
       console.log('ctx.request.files:', ctx.request.files);
+      console.log('ctx.request.params:', ctx.request.params);
+      console.log('ctx.params:', ctx.params);
+      console.log('ctx.query:', ctx.query);
       console.log('ctx.request.body.data:', ctx.request.body.data);
       console.log('ctx.request.body.attributes:', ctx.request.body.attributes);
       
