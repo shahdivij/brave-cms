@@ -9,20 +9,20 @@ const { createCoreController } = require('@strapi/strapi').factories;
 module.exports = createCoreController('api::warrenty.warrenty', ({ strapi }) => ({
   async create(ctx) {
     try {
-      // Handle both JSON and multipart/form-data requests
-      let requestData;
+      // Log the entire request for debugging
+      console.log('=== WARRANTY CREATE REQUEST ===');
+      console.log('ctx.request.body:', JSON.stringify(ctx.request.body, null, 2));
+      console.log('ctx.request.files:', ctx.request.files);
+      console.log('ctx.request.body.data:', ctx.request.body.data);
       
-      if (ctx.request.body.data) {
-        // If data is a string (from form-data), parse it
-        requestData = typeof ctx.request.body.data === 'string' 
-          ? JSON.parse(ctx.request.body.data) 
-          : ctx.request.body.data;
-      } else {
-        // If no data wrapper, use body directly
-        requestData = ctx.request.body;
-      }
-
-      const { SerialNumber } = requestData;
+      // Get data from request body
+      const requestData = ctx.request.body.data || ctx.request.body;
+      const { SerialNumber, InvoiceBase64, InvoiceFileName, InvoiceMimeType, ...otherData } = requestData;
+      
+      console.log('Extracted SerialNumber:', SerialNumber);
+      console.log('Extracted InvoiceBase64 (first 100 chars):', InvoiceBase64 ? InvoiceBase64.substring(0, 100) : 'null');
+      console.log('Extracted InvoiceFileName:', InvoiceFileName);
+      console.log('Extracted InvoiceMimeType:', InvoiceMimeType);
 
       // Validate that SerialNumber is provided
       if (!SerialNumber) {
@@ -47,25 +47,39 @@ module.exports = createCoreController('api::warrenty.warrenty', ({ strapi }) => 
         return ctx.badRequest('A warranty already exists for this serial number.');
       }
 
-      // Handle file upload if present
+      // Handle base64 file upload if provided
       let uploadedFileId = null;
-      if (ctx.request.files && ctx.request.files['files.Invoice']) {
-        const file = ctx.request.files['files.Invoice'];
-        
-        // Upload the file using Strapi's upload service
-        const uploadedFiles = await strapi.plugins.upload.services.upload.upload({
-          data: {},
-          files: file,
-        });
-        
-        if (uploadedFiles && uploadedFiles.length > 0) {
-          uploadedFileId = uploadedFiles[0].id;
+      if (InvoiceBase64) {
+        try {
+          // Remove data URL prefix if present (e.g., "data:image/jpeg;base64,")
+          const base64Data = InvoiceBase64.replace(/^data:([A-Za-z-+\/]+);base64,/, '');
+          const buffer = Buffer.from(base64Data, 'base64');
+          
+          // Create a file object
+          const fileName = InvoiceFileName || `invoice_${Date.now()}.jpg`;
+          const mimeType = InvoiceMimeType || 'image/jpeg';
+          
+          // Upload the file using Strapi's upload service
+          const uploadedFiles = await strapi.plugins.upload.services.upload.uploadFileAndPersist({
+            name: fileName,
+            type: mimeType,
+            size: buffer.length,
+            buffer: buffer,
+          });
+          
+          if (uploadedFiles) {
+            uploadedFileId = uploadedFiles.id;
+          }
+        } catch (uploadError) {
+          console.error('Error uploading base64 file:', uploadError);
+          return ctx.badRequest('Failed to upload invoice file');
         }
       }
 
       // Prepare data for creation
       const dataToCreate = {
-        ...requestData
+        SerialNumber,
+        ...otherData
       };
 
       // Add the uploaded file ID if file was uploaded
@@ -73,7 +87,7 @@ module.exports = createCoreController('api::warrenty.warrenty', ({ strapi }) => 
         dataToCreate.Invoice = uploadedFileId;
       }
 
-      // Update ctx.request.body.data with the file ID
+      // Update ctx.request.body.data
       ctx.request.body.data = dataToCreate;
 
       // Create the warranty record using the default create method
