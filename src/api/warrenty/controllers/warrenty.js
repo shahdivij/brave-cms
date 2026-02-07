@@ -24,7 +24,14 @@ module.exports = createCoreController('api::warrenty.warrenty', ({ strapi }) => 
       });
 
       if (!serialNumberExists || serialNumberExists.length === 0) {
-        return ctx.badRequest('Invalid SerialNumber. The serial number does not exist in our records.');
+        return ctx.send({
+          error: {
+            status: 410,
+            name: 'GoneError',
+            message: 'Invalid SerialNumber. The serial number does not exist in our records.',
+            code: 'INVALID_SERIAL_NUMBER'
+          }
+        }, 410);
       }
 
       // Check if warranty already exists for this serial number
