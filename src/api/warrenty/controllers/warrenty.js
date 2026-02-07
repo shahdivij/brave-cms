@@ -9,24 +9,9 @@ const { createCoreController } = require('@strapi/strapi').factories;
 module.exports = createCoreController('api::warrenty.warrenty', ({ strapi }) => ({
   async create(ctx) {
     try {
-      // Log the entire request for debugging
-      console.log('=== WARRANTY CREATE REQUEST ===');
-      console.log('ctx.request.body:', JSON.stringify(ctx.request.body, null, 2));
-      console.log('ctx.request.files:', ctx.request.files);
-      console.log('ctx.request.params:', ctx.request.params);
-      console.log('ctx.params:', ctx.params);
-      console.log('ctx.query:', ctx.query);
-      console.log('ctx.request.body.data:', ctx.request.body.data);
-      console.log('ctx.request.body.attributes:', ctx.request.body.attributes);
-      
-      // Get data from request body - check multiple possible locations
-      const requestData = ctx.request.body.data || ctx.request.body.attributes || ctx.request.body;
-      const { SerialNumber, InvoiceBase64, InvoiceFileName, InvoiceMimeType, ...otherData } = requestData;
-      
-      console.log('Extracted SerialNumber:', SerialNumber);
-      console.log('Extracted InvoiceBase64 (first 100 chars):', InvoiceBase64 ? InvoiceBase64.substring(0, 100) : 'null');
-      console.log('Extracted InvoiceFileName:', InvoiceFileName);
-      console.log('Extracted InvoiceMimeType:', InvoiceMimeType);
+      // Get data from request body
+      const requestData = ctx.request.body.data || ctx.request.body;
+      const { SerialNumber, Invoice, ...otherData } = requestData;
 
       // Validate that SerialNumber is provided
       if (!SerialNumber) {
@@ -51,32 +36,64 @@ module.exports = createCoreController('api::warrenty.warrenty', ({ strapi }) => 
         return ctx.badRequest('A warranty already exists for this serial number.');
       }
 
-      // Handle base64 file upload if provided
+      // Handle Invoice URL - download and save to server
       let uploadedFileId = null;
-      if (InvoiceBase64) {
+      if (Invoice && typeof Invoice === 'string' && Invoice.startsWith('http')) {
         try {
-          // Remove data URL prefix if present (e.g., "data:image/jpeg;base64,")
-          const base64Data = InvoiceBase64.replace(/^data:([A-Za-z-+\/]+);base64,/, '');
-          const buffer = Buffer.from(base64Data, 'base64');
+          const fs = require('fs');
+          const path = require('path');
+          const crypto = require('crypto');
           
-          // Create a file object
-          const fileName = InvoiceFileName || `invoice_${Date.now()}.jpg`;
-          const mimeType = InvoiceMimeType || 'image/jpeg';
+          // Download the file from the URL
+          const response = await fetch(Invoice);
+          if (!response.ok) {
+            throw new Error(`Failed to download file: ${response.statusText}`);
+          }
           
-          // Upload the file using Strapi's upload service
-          const uploadedFiles = await strapi.plugins.upload.services.upload.uploadFileAndPersist({
-            name: fileName,
-            type: mimeType,
-            size: buffer.length,
-            buffer: buffer,
+          const arrayBuffer = await response.arrayBuffer();
+          const buffer = Buffer.from(arrayBuffer);
+          
+          // Get content type and extension
+          const contentType = response.headers.get('content-type') || 'image/jpeg';
+          const ext = contentType.split('/')[1] || 'jpg';
+          
+          // Generate unique filename
+          const hash = crypto.randomBytes(16).toString('hex');
+          const fileName = `invoice_${hash}.${ext}`;
+          
+          // Save to public/uploads folder
+          const uploadsDir = path.join(process.cwd(), 'public', 'uploads');
+          if (!fs.existsSync(uploadsDir)) {
+            fs.mkdirSync(uploadsDir, { recursive: true });
+          }
+          
+          const filePath = path.join(uploadsDir, fileName);
+          fs.writeFileSync(filePath, buffer);
+          
+          // Create file entry in database
+          const fileEntry = await strapi.query('plugin::upload.file').create({
+            data: {
+              name: fileName,
+              alternativeText: 'Invoice',
+              caption: 'Invoice',
+              width: null,
+              height: null,
+              formats: null,
+              hash: hash,
+              ext: `.${ext}`,
+              mime: contentType,
+              size: (buffer.length / 1024).toFixed(2),
+              url: `/uploads/${fileName}`,
+              previewUrl: null,
+              provider: 'local',
+              provider_metadata: null,
+            },
           });
           
-          if (uploadedFiles) {
-            uploadedFileId = uploadedFiles.id;
-          }
+          uploadedFileId = fileEntry.id;
+          
         } catch (uploadError) {
-          console.error('Error uploading base64 file:', uploadError);
-          return ctx.badRequest('Failed to upload invoice file');
+          return ctx.badRequest(`Failed to process invoice file: ${uploadError.message}`);
         }
       }
 
@@ -99,7 +116,6 @@ module.exports = createCoreController('api::warrenty.warrenty', ({ strapi }) => 
 
       return response;
     } catch (err) {
-      console.error('Error creating warranty:', err);
       ctx.throw(500, err);
     }
   }
