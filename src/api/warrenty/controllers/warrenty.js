@@ -33,7 +33,14 @@ module.exports = createCoreController('api::warrenty.warrenty', ({ strapi }) => 
       });
 
       if (existingWarranty && existingWarranty.length > 0) {
-        return ctx.badRequest('A warranty already exists for this serial number.');
+        return ctx.send({
+          error: {
+            status: 409,
+            name: 'ConflictError',
+            message: 'A warranty already exists for this serial number.',
+            code: 'WARRANTY_ALREADY_EXISTS'
+          }
+        }, 409);
       }
 
       // Handle Invoice URL - download and save to server
